@@ -14,9 +14,9 @@ height = screen.height
 
 class AllumettesTask(TaskTemplate):
     yes_key_name = "espace"
-    yes_key_code = "space"
+    yes_key_code = "space"  ## à modifier ? réflechir
     quit_code = "q"
-    keys = ["space", yes_key_name, quit_code]
+    keys = ["space", yes_key_name, quit_code]  ### à définir
     launch_example = True
     next = f"Pour passer à l'instruction suivante, appuyez sur la touche {yes_key_name}"
     instructions = [f"Dans ce mini-jeu, appuyez sur la touche {yes_key_name} si la flèche centralee.",
@@ -30,7 +30,7 @@ class AllumettesTask(TaskTemplate):
 
     def task(self, no_trial, exp_start_timestamp, trial_start_timestamp, practice=False):
         nb_allumettes = random.randint(50, 200)
-        L_ans = [nb_allumettes, int(nb_allumettes*2.5 - 23)]
+        L_ans = [nb_allumettes, int(nb_allumettes * 2.5 - 23)]
 
         for i in range(nb_allumettes):
             self.create_visual_image(image='allumette.jpg', pos=(randint(-500, 500), randint(-500, 500)),
@@ -38,7 +38,7 @@ class AllumettesTask(TaskTemplate):
         self.win.flip()
         core.wait(10)
 
-        self.create_visual_text(text=f"Combien d'allumettes avez-vous vu ? ( {L_ans.pop(random.randint(0,1))} /"
+        self.create_visual_text(text=f"Combien d'allumettes avez-vous vu ? ( {L_ans.pop(random.randint(0, 1))} /"
                                      f" {L_ans[0]} )").draw()
         self.win.flip()
         if L_ans[0] == nb_allumettes:
@@ -50,6 +50,7 @@ class AllumettesTask(TaskTemplate):
         except (TypeError, AttributeError):
             resp = ""
             rt = 1
+        print("aa")  # test pour voir jusqu'où le programme arrive ?
 
         if resp == good_ans:
             good_answer = True
