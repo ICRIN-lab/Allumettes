@@ -14,9 +14,9 @@ height = screen.height
 
 class AllumettesTask(TaskTemplate):
     yes_key_name = "espace"
-    yes_key_code = "space"  ## à modifier ? réflechir
+    yes_key_code = "space"
     quit_code = "q"
-    keys = ["space", yes_key_name, quit_code]  ### à définir
+    keys = ["a", "p", "space", yes_key_name, quit_code]
     launch_example = True
     next = f"Pour passer à l'instruction suivante, appuyez sur la touche {yes_key_name}"
     instructions = [f"Dans ce mini-jeu, appuyez sur la touche {yes_key_name} si la flèche centralee.",
@@ -29,14 +29,14 @@ class AllumettesTask(TaskTemplate):
     # Conjunction Search Task
 
     def task(self, no_trial, exp_start_timestamp, trial_start_timestamp, practice=False):
-        nb_allumettes = random.randint(50, 200)
-        L_ans = [nb_allumettes, int(nb_allumettes * 2.5 - 23)]
+        nb_allumettes = random.randint(10, 100)
+        L_ans = [nb_allumettes, int(abs(100-1.1*nb_allumettes))]
 
         for i in range(nb_allumettes):
             self.create_visual_image(image='allumette.jpg', pos=(randint(-500, 500), randint(-500, 500)),
                                      ori=randint(0, 360), units='pix').draw()
         self.win.flip()
-        core.wait(10)
+        core.wait(0.7)
 
         self.create_visual_text(text=f"Combien d'allumettes avez-vous vu ? ( {L_ans.pop(random.randint(0, 1))} /"
                                      f" {L_ans[0]} )").draw()
@@ -50,7 +50,6 @@ class AllumettesTask(TaskTemplate):
         except (TypeError, AttributeError):
             resp = ""
             rt = 1
-        print("aa")  # test pour voir jusqu'où le programme arrive ?
 
         if resp == good_ans:
             good_answer = True
