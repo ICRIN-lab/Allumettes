@@ -20,9 +20,11 @@ class AllumettesTask(TaskTemplate):
     launch_example = False
     trials = 50
     next = f"Pour passer à l'instruction suivante, appuyez sur la touche {yes_key_name}"
-    instructions = ["Dans ce mini-jeu, vous devez deviner le nombre d'allumettes présentes sur l'image !",
-                    "S'il-vous-plaît, n'appuyez que lorsqu'on vous le demande ou lors de la tâche",
-                    f"Placez vos index sur les touches 'a' et 'p' s'il-vous-plaît",
+    good_luck = f"Vous êtes prêt ? Appuyez sur la touche {yes_key_name} pour démarrer"
+    instructions = ["Dans cette tâche cognitive, choisissez le nombre d'allumettes présentes parmi les deux "
+                    "propositions",
+                    "N'appuyez sur les touches que lorsqu'on vous le demande",
+                    f"Placez vos index sur les touches 'a' et 'p'",
                     ]
     csv_headers = ['no_trial', 'id_candidate', 'left_ans', 'right_ans', 'ans_candidate', 'good_ans', 'correct',
                    'practice', 'reaction_time', 'time_stamp']
@@ -30,10 +32,10 @@ class AllumettesTask(TaskTemplate):
     # Conjunction Search Task
 
     def task(self, no_trial, exp_start_timestamp, trial_start_timestamp, practice=False):
-        self.create_visual_image(image=f'img/allum_{no_trial}.png').draw()
+        self.create_visual_image(image=f'img/allum_{no_trial}.png', size=(width, height)).draw()
         self.win.flip()
-        core.wait(0.7)
-        L = [[44, 51], [61, 32], [54, 40], [71, 21], [33, 63], [73, 19], [50, 44], [47, 48], [73, 19], [40, 56], [36, 60], [35, 61], [66, 27], [53, 41], [62, 31], [75, 17], [62, 31], [40, 56], [53, 41], [65, 28], [48, 47], [55, 39], [76, 16], [62, 31], [51, 43], [58, 36], [44, 51], [54, 40], [37, 59], [62, 31], [54, 40], [37, 59], [59, 35], [43, 52], [41, 54], [57, 37], [68, 25], [42, 53], [53, 41], [74, 18], [54, 40], [60, 34], [66, 27], [43, 52], [57, 37], [43, 52], [74, 18], [71, 21], [60, 34], [54, 40]]
+        core.wait(2)
+        L = [[44, 51], [61, 53], [54, 45], [71, 62], [33, 40], [73, 62], [50, 44], [47, 51], [73, 84], [40, 52], [36, 24], [35, 43], [66, 54], [53, 63], [62, 56], [75, 75], [62, 31], [40, 56], [53, 41], [65, 28], [48, 47], [55, 39], [76, 16], [62, 31], [51, 43], [58, 36], [44, 51], [54, 40], [37, 59], [62, 31], [54, 40], [37, 59], [59, 35], [43, 52], [41, 54], [57, 37], [68, 25], [42, 53], [53, 41], [74, 18], [54, 40], [60, 34], [66, 27], [43, 52], [57, 37], [43, 52], [74, 18], [71, 21], [60, 34], [54, 40]]
 
         seed = random.randint(0, 1)
         left_ans = L[no_trial][seed]
@@ -45,7 +47,7 @@ class AllumettesTask(TaskTemplate):
         else:
             good_ans = 'a'
         try:
-            resp, rt = self.get_response_with_time(timeout=4)
+            resp, rt = self.get_response_with_time()
         except (TypeError, AttributeError):
             resp = ""
             rt = 1

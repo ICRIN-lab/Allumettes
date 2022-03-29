@@ -35,7 +35,7 @@ class TaskTemplate:
     """instructions on the task given to the user. Should be overwritten as it is empty in template."""
     next = f"Pour passer à l'instruction suivante, appuyez sur la touche {yes_key_name}"
     """text to show between 2 screens of instructions."""
-    good_luck = "Bonne chance !"
+    good_luck = f"Vous êtes prêt ? Appuyez sur la touche {yes_key_name} pour démarrer"
     """Good luck text to show right before first trial"""
     end = "Le mini-jeu est à présent terminé. Merci, et au revoir !"
     """Text to show when all trials are done, and before the end."""
@@ -57,7 +57,7 @@ class TaskTemplate:
             colorSpace='rgb'
         )
         exp_info = {'participant': '', "date": data.getDateStr()}
-        gui.DlgFromDict(exp_info, title='Subliminal Priming Task', fixed=["date"])
+        gui.DlgFromDict(exp_info, title='Lucifer Task', fixed=["date"])
         self.participant = exp_info["participant"]
         file_name = exp_info['participant'] + '_' + exp_info['date']
         self.dataFile = open(f"{csv_folder}/{file_name}.csv", 'w')
@@ -96,10 +96,11 @@ class TaskTemplate:
             depth=1
         )
 
-    def create_visual_image(self, image, pos=(0, 0), ori=0.0, units='pix'):
+    def create_visual_image(self, image, size, pos=(0, 0), ori=0.0, units='pix'):
         return visual.ImageStim(
             win=self.win,
             image=image,
+            size=size,
             pos=pos,
             ori=ori,
             units=units)
