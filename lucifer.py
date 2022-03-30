@@ -13,10 +13,12 @@ height = screen.height
 
 
 class AllumettesTask(TaskTemplate):
-    yes_key_name = "espace"
-    yes_key_code = "space"
+    yes_key_name = "p"
+    yes_key_code = "p"
+    no_key_code = "a"
+    no_key_name = "a"
     quit_code = "q"
-    keys = ["a", "p", "space", yes_key_name, quit_code]
+    keys = ["space", yes_key_name,no_key_name, quit_code]
     launch_example = False
     trials = 50
     next = f"Pour passer à l'instruction suivante, appuyez sur la touche {yes_key_name}"
