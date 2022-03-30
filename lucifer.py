@@ -29,16 +29,18 @@ class AllumettesTask(TaskTemplate):
                     f"Placez vos index sur les touches 'a' et 'p'",
                     ]
     csv_headers = ['no_trial', 'id_candidate', 'left_ans', 'right_ans', 'ans_candidate', 'good_ans', 'correct',
-                   'practice', 'reaction_time', 'time_stamp']
+                   'practice','group', 'reaction_time', 'time_stamp']
 
     # Conjunction Search Task
 
     def task(self, no_trial, exp_start_timestamp, trial_start_timestamp, practice=False):
+        group = 'common'
+        score = 0
+        waiting_time = 2
         self.create_visual_image(image=f'img/allum_{no_trial}.png', size=(width, height)).draw()
         self.win.flip()
-        core.wait(2)
-        L = [[44, 51], [61, 53], [54, 45], [71, 62], [33, 40], [73, 62], [50, 44], [47, 51], [73, 84], [40, 52], [36, 24], [35, 43], [66, 54], [53, 63], [62, 56], [75, 75], [62, 31], [40, 56], [53, 41], [65, 28], [48, 47], [55, 39], [76, 16], [62, 31], [51, 43], [58, 36], [44, 51], [54, 40], [37, 59], [62, 31], [54, 40], [37, 59], [59, 35], [43, 52], [41, 54], [57, 37], [68, 25], [42, 53], [53, 41], [74, 18], [54, 40], [60, 34], [66, 27], [43, 52], [57, 37], [43, 52], [74, 18], [71, 21], [60, 34], [54, 40]]
-
+        core.wait(waiting_time)
+        L = [[39, 57], [30, 67], [62, 31], [49, 46], [47, 48], [70, 23], [65, 28], [39, 57], [57, 37], [47, 48], [75, 17], [60, 34], [69, 24], [47, 48], [70, 23], [48, 47], [54, 40], [77, 15], [76, 16], [56, 38], [46, 49], [54, 40], [49, 46], [32, 64], [37, 59], [46, 49], [34, 62], [51, 43], [55, 39], [48, 47], [80, 12], [44, 51], [48, 47], [34, 62], [80, 12], [32, 64], [80, 12], [74, 18], [31, 65], [72, 20], [63, 30], [63, 30], [73, 19], [61, 32], [45, 50], [70, 23], [76, 16], [69, 24], [73, 19], [43, 52], [55, 39], [80, 12], [61, 32], [39, 57], [31, 65], [44, 51], [39, 57], [77, 15], [67, 26], [78, 14], [31, 65], [40, 56], [43, 52], [80, 12], [48, 47], [68, 25], [33, 63], [39, 57], [41, 54], [44, 51], [32, 64], [46, 49], [66, 27], [42, 53], [40, 56], [37, 59], [67, 26], [75, 17], [46, 49], [58, 36], [47, 48], [80, 12], [30, 67], [47, 48], [65, 28], [41, 54], [54, 40], [41, 54], [38, 58], [72, 20], [74, 18], [72, 20], [49, 46], [76, 16], [50, 44], [67, 26], [70, 23], [63, 30], [44, 51], [63, 30]]
         seed = random.randint(0, 1)
         left_ans = L[no_trial][seed]
         self.create_visual_text(text=f"Combien d'allumettes avez-vous vu ? ( {L[no_trial].pop(seed)} /"
@@ -56,17 +58,20 @@ class AllumettesTask(TaskTemplate):
 
         if resp == good_ans:
             correct = True
+            score += 1
         else:
             correct = False
 
         self.update_csv(no_trial, self.participant, left_ans, L[no_trial][0], [left_ans if resp == 'a' else L[no_trial][0]][0], [left_ans if good_ans == 'a' else L[no_trial][0]][0], correct,
-                        practice, round(rt, 2), round(time.time() - exp_start_timestamp, 2))
+                        practice, group, round(rt, 2), round(time.time() - exp_start_timestamp, 2))
         self.create_visual_text("").draw()
         self.win.flip()
-        rnd_time = randint(8, 14)
-        core.wait(rnd_time * 10 ** -3)
+        if no_trial == 50 and score >= 40:
+            waiting_time /= 2
+
+        core.wait(.5)
         if practice:
-            return good_answer
+            return correct
 
     def example(self, exp_start_timestamp):
         score = 0

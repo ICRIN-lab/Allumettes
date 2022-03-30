@@ -21,5 +21,5 @@ def gen_allum(nb_img):
     return choices
 
 
-L_choices = gen_allum(50)
+L_choices = gen_allum(100)
 print(L_choices)
