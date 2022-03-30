@@ -68,6 +68,7 @@ class AllumettesTask(TaskTemplate):
         self.win.flip()
         if no_trial == 50 and score >= 40:
             waiting_time /= 2
+            group = 'pro'
 
         core.wait(.5)
         if practice:
