@@ -1,0 +1,13 @@
+no_trial, id_candidate, left_ans, right_ans, ans_candidate, good_ans, correct, practice, group, reaction_time, time_stamp
+0, Ilyass, 39, 52, 39, 39, True, False, common, 3.07, 15.04
+1, Ilyass, 41, 30, 41, 30, False, False, common, 1.32, 19.04
+2, Ilyass, 50, 62, 62, 62, True, False, common, 0.81, 22.55
+3, Ilyass, 49, 58, 49, 49, True, False, common, 1.16, 26.39
+4, Ilyass, 47, 40, 47, 47, True, False, common, 2.04, 31.11
+5, Ilyass, 62, 70, 70, 70, True, False, common, 0.88, 34.69
+6, Ilyass, 65, 74, 74, 65, False, False, common, 1.11, 38.49
+7, Ilyass, 39, 26, 39, 39, True, False, common, 1.68, 42.84
+8, Ilyass, 57, 69, 57, 57, True, False, common, 1.87, 47.4
+9, Ilyass, 47, 35, 47, 47, True, False, common, 1.12, 51.19
+10, Ilyass, 61, 75, 75, 75, True, False, common, 0.91, 54.8
+11, Ilyass, 34, 60, 60, 60, True, False, common, 2.19, 59.67
