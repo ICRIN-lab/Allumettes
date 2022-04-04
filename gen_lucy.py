@@ -7,8 +7,8 @@ from random import randint
 def gen_allum(nb_img):
     choices = []
     for i in range(nb_img):
-        nb_allumettes = randint(30, 80)
-        choices.append([nb_allumettes, int(abs(100 - 1.1 * nb_allumettes))])  # calcul à refaire
+        nb_allumettes = randint(10, 90)
+        choices.append([nb_allumettes, nb_allumettes+randint(5, 20)])
         img = Image.new(mode="RGB", size=(get_monitors()[0].width, get_monitors()[0].height), color=(0, 0, 0))
         for j in range(nb_allumettes):
             angle = randint(0, 180)
