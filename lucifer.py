@@ -111,4 +111,3 @@ if not os.path.isdir("csv"):
     os.mkdir("csv")
 exp = AllumettesTask("csv")
 exp.start()
-
