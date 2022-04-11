@@ -33,7 +33,7 @@ class AllumettesTask(TaskTemplate):
 
     def task(self, no_trial, exp_start_timestamp, trial_start_timestamp, practice=False):
         group = 'common'
-        waiting_time = .1  # change to 2 seconds
+        waiting_time = 2
         self.create_visual_image(image=f'img/allum_{no_trial}.png', size=(width, height)).draw()
         self.win.flip()
         core.wait(waiting_time)
