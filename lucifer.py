@@ -18,7 +18,7 @@ class AllumettesTask(TaskTemplate):
     no_key_code = "a"
     no_key_name = "a"
     quit_code = "q"
-    keys = ["space", yes_key_name,no_key_name, quit_code]
+    keys = ["space", yes_key_name, no_key_name, quit_code]
     launch_example = False
     trials = 50
     next = f"Pour passer à l'instruction suivante, appuyez sur la touche {yes_key_name}"
@@ -29,7 +29,7 @@ class AllumettesTask(TaskTemplate):
                     f"Placez vos index sur les touches 'a' et 'p'.",
                     ]
     csv_headers = ['no_trial', 'id_candidate', 'left_ans', 'right_ans', 'ans_candidate', 'good_ans', 'correct',
-                   'practice','group', 'reaction_time', 'time_stamp']
+                   'practice', 'group', 'reaction_time', 'time_stamp']
 
     # Conjunction Search Task
 
@@ -111,3 +111,4 @@ if not os.path.isdir("csv"):
     os.mkdir("csv")
 exp = AllumettesTask("csv")
 exp.start()
+
