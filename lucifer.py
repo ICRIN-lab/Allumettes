@@ -23,10 +23,10 @@ class AllumettesTask(TaskTemplate):
     score = 0
     next = f"Pour passer à l'instruction suivante, appuyez sur la touche {yes_key_name}"
     good_luck = f"Vous êtes prêt ? Appuyez sur la touche {yes_key_name} pour démarrer"
-    instructions = ["Dans cette tâche cognitive, choisissez le nombre d'allumettes présentes parmi les deux "
+    instructions = ["Dans cette tâche cognitive, choisissez combien d'allumettes sont présentes parmi les deux "
                     "propositions.",
                     "N'appuyez sur les touches que lorsqu'on vous le demande.",
-                    f"Placez vos index sur les touches 'a' et 'p'.",
+                    "Placez vos index sur les touches 'a' et 'p'.",
                     ]
     csv_headers = ['no_trial', 'id_candidate', 'left_ans', 'right_ans', 'ans_candidate', 'good_ans', 'correct',
                    'practice', 'group', 'score', 'reaction_time', 'time_stamp']
