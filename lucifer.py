@@ -86,8 +86,8 @@ class AllumettesTask(TaskTemplate):
 
     def example(self, exp_start_timestamp):
         score_example = 0
-        example = self.create_visual_text(text='Commençons par un exemple')
-        tutoriel_end = self.create_visual_text(text="Le tutoriel est désormais terminé")
+        example = self.create_visual_text(text='Commençons par un petit entraînement')
+        tutoriel_end = self.create_visual_text(text="L'entraînement est désormais terminé")
         example.draw()
         self.create_visual_text(self.next, pos=(0, -0.4), font_size=0.04).draw()
         self.win.flip()
