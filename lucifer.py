@@ -23,7 +23,7 @@ class AllumettesTask(TaskTemplate):
     score = 0
     next = f"Pour passer à l'instruction suivante, appuyez sur la touche {yes_key_name}"
     good_luck = f"Vous êtes prêt ? Appuyez sur la touche {yes_key_name} pour démarrer"
-    instructions = ["Dans cette tâche cognitive, choisissez combien d'allumettes sont présentes parmi les deux "
+    instructions = ["Dans cette expérience, choisissez combien d'allumettes sont présentes parmi les deux "
                     "propositions.",
                     "N'appuyez sur les touches que lorsqu'on vous le demande.",
                     "Placez vos index sur les touches 'a' et 'p'.",

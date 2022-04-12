@@ -1,5 +1,0 @@
-no_trial, id_candidate, left_ans, right_ans, ans_candidate, good_ans, correct, practice, group, score, reaction_time, time_stamp
-0, Test, 86, 79, 79, 79, True, True, common, 0, 0.44, 3.76
-1, Test, 72, 84, 72, 72, True, True, common, 0, 0.13, 6.7
-2, Test, 39, 49, 49, 39, False, True, common, 0, 0.02, 9.51
-3, Test, 82, 100, 100, 82, False, False, common, 0, 0.89, 26.25
