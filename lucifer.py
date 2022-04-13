@@ -21,18 +21,18 @@ class AllumettesTask(TaskTemplate):
     launch_example = True
     trials = 100
     score = 0
+    group = 'common'
     next = f"Pour passer à l'instruction suivante, appuyez sur la touche {yes_key_name}"
     good_luck = f"Vous êtes prêt ? Appuyez sur la touche {yes_key_name} pour démarrer"
-    instructions = ["Dans cette expérience, choisissez combien d'allumettes sont présentes parmi les deux "
-                    "propositions.",
-                    "N'appuyez sur les touches que lorsqu'on vous le demande.",
-                    "Placez vos index sur les touches 'a' et 'p'.",
-                    ]
+    instructions = [
+        f"Dans cette expérience : \n\n - appuyez sur la touche '{yes_key_name}' pour selectionner la réponse "
+        f"de droite. \n\n - appuyez sur la touche '{no_key_name}' pour selectionner la réponse de "
+        f"gauche.", "N'appuyez sur les touches que lorsqu'on vous le demande.", "Placez vos index sur les touches 'a' "
+                                                                                "et 'p'."]
     csv_headers = ['no_trial', 'id_candidate', 'left_ans', 'right_ans', 'ans_candidate', 'good_ans', 'correct',
                    'practice', 'group', 'score', 'reaction_time', 'time_stamp']
 
     def task(self, no_trial, exp_start_timestamp, trial_start_timestamp, practice=False):
-        group = 'common'
         waiting_time = 2
         self.create_visual_image(image=f'img/allum_{no_trial}.png', size=(width, height)).draw()
         self.win.flip()
@@ -73,12 +73,12 @@ class AllumettesTask(TaskTemplate):
         self.update_csv(no_trial, self.participant, left_ans, L[no_trial][0],
                         [left_ans if resp == 'a' else L[no_trial][0]][0],
                         [left_ans if good_ans == 'a' else L[no_trial][0]][0], correct,
-                        practice, group, self.score, round(rt, 2), round(time.time() - exp_start_timestamp, 2))
+                        practice, self.group, self.score, round(rt, 2), round(time.time() - exp_start_timestamp, 2))
         self.create_visual_text("").draw()
         self.win.flip()
         if no_trial == 53 and self.score >= 40:
             waiting_time /= 2
-            group = 'pro'
+            self.group = 'pro'
 
         core.wait(.5)
         if practice:
