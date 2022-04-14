@@ -20,7 +20,7 @@ class AllumettesTask(TaskTemplate):
     quit_code = "q"
     keys = ["space", yes_key_name,no_key_name, quit_code]
     launch_example = False
-    trials = 50
+    trials = 100
     next = f"Pour passer à l'instruction suivante, appuyez sur la touche {yes_key_name}"
     good_luck = f"Vous êtes prêt ? Appuyez sur la touche {yes_key_name} pour démarrer"
     instructions = ["Dans cette tâche cognitive, choisissez le nombre d'allumettes présentes parmi les deux "
