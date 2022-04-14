@@ -70,11 +70,11 @@ img.paste(foreground, (x_5-80, y_2), foreground)
 img.paste(foreground, (x_5-80, y_3+150), foreground)
 
 
-
+print(f'[33,{33+random.randint(5,20)}]') #nb d'allumettes
 
 
 img.show()
 
-img.save(f'img/lucifer_shape_hello.png')
+img.save(f'img/allum_45.png')
 
 

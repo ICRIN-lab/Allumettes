@@ -64,8 +64,8 @@ img.paste(foreground, (x_2+epsilon, y_1+100), foreground)
 
 
 
-img.show()
+print(f'[26,{26+random.randint(5,20)}]') #nb d'allumettes
 
-img.save(f'img/shapes/lucifer_shape_lol.png')
+img.save(f'img/allum_46.png')
 
 
