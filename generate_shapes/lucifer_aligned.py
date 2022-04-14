@@ -20,7 +20,7 @@ def gen_align(nb_img):
         nb_allumettes = randint(5, 30)
         choices.append([nb_allumettes, nb_allumettes + randint(5, 20)])
         for j in range(nb_allumettes):
-            foreground = Image.open("allumette.png").rotate(90, expand=True)
+            foreground = Image.open("../allumette.png").rotate(90, expand=True)
             x = randint(50, 1900)
             while not check_distance(L, x):
                 print(j)

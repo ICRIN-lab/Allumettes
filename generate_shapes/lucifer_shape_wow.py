@@ -25,7 +25,7 @@ y_5=960
 epsilon = 50 #espace entre lettres
 
 # borders :
-foreground = Image.open("allumette.png").rotate(90, expand=True)
+foreground = Image.open("../allumette.png").rotate(90, expand=True)
 img.paste(foreground, (x_0, y_0), foreground)
 img.paste(foreground, (x_0, y_2), foreground)
 img.paste(foreground, (x_0, y_4), foreground)
@@ -33,7 +33,7 @@ img.paste(foreground, (x_6, y_0), foreground)
 img.paste(foreground, (x_6, y_2), foreground)
 img.paste(foreground, (x_6, y_4), foreground)
 
-foreground = Image.open("allumette.png")
+foreground = Image.open("../allumette.png")
 img.paste(foreground, (x_0, y_0), foreground)
 img.paste(foreground, (x_1, y_0), foreground)
 img.paste(foreground, (x_2, y_0), foreground)
@@ -49,22 +49,26 @@ img.paste(foreground, (x_5, y_5), foreground)
 
 
 #Letters :
-foreground = Image.open("allumette.png").rotate(45, expand=True)
-img.paste(foreground, (x_1, y_1), foreground)
-img.paste(foreground, (x_2+75, y_1), foreground)
-img.paste(foreground, (x_2+75, y_3+150), foreground)
-img.paste(foreground, (x_3, y_2+80), foreground)
+foreground = Image.open("../allumette.png").rotate(45, expand=True)
+img.paste(foreground, (x_0+150, y_2), foreground)
+img.paste(foreground, (x_2-100, y_2), foreground)
+img.paste(foreground, (x_4+50, y_2), foreground)
+img.paste(foreground, (x_5+50, y_2), foreground)
+foreground = Image.open("../allumette.png").rotate(-45, expand=True)
+img.paste(foreground, (x_0, y_2), foreground)
+img.paste(foreground, (x_1, y_2), foreground)
+img.paste(foreground, (x_4-50, y_2), foreground)
+img.paste(foreground, (x_5-50, y_2), foreground)
+foreground = Image.open("../allumette.png").rotate(90, expand=True)
+img.paste(foreground, (x_3-100, y_1+50), foreground)
+img.paste(foreground, (x_4-100, y_1+50), foreground)
+foreground = Image.open("../allumette.png")
+img.paste(foreground, (x_3-100, y_1+50), foreground)
+img.paste(foreground, (x_3-100, y_3+50), foreground)
 
-foreground = Image.open("allumette.png").rotate(-45, expand=True)
-img.paste(foreground, (x_2-50, y_1), foreground)
-img.paste(foreground, (x_1, y_3-50), foreground)
-img.paste(foreground, (x_2-80, y_3+150), foreground)
-img.paste(foreground, (x_3, y_1), foreground)
+
+print(f'[33,{33+random.randint(5,20)}]') #nb d'allumettes
 
 
-print(f'[33,{26+random.randint(5,20)}]')  #nb d'allumettes
-
-
-img.save(f'img/allum_47.png')
-
+img.save(f'img/allum_49.png')
 

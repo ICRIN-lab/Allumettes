@@ -24,7 +24,7 @@ y_5=960
 epsilon = 50 #espace entre lettres
 
 # borders :
-foreground = Image.open("allumette.png").rotate(90, expand=True)
+foreground = Image.open("../allumette.png").rotate(90, expand=True)
 img.paste(foreground, (x_0, y_0), foreground)
 img.paste(foreground, (x_0, y_2), foreground)
 img.paste(foreground, (x_0, y_4), foreground)
@@ -32,7 +32,7 @@ img.paste(foreground, (x_6, y_0), foreground)
 img.paste(foreground, (x_6, y_2), foreground)
 img.paste(foreground, (x_6, y_4), foreground)
 
-foreground = Image.open("allumette.png")
+foreground = Image.open("../allumette.png")
 img.paste(foreground, (x_0, y_0), foreground)
 img.paste(foreground, (x_1, y_0), foreground)
 img.paste(foreground, (x_2, y_0), foreground)
@@ -48,7 +48,7 @@ img.paste(foreground, (x_5, y_5), foreground)
 
 
 #Letters :
-foreground = Image.open("allumette.png").rotate(90, expand=True)
+foreground = Image.open("../allumette.png").rotate(90, expand=True)
 img.paste(foreground, (x_1, y_1+100), foreground)
 img.paste(foreground, (x_2+epsilon, y_1+100), foreground)
 img.paste(foreground, (x_3+50, y_1+100), foreground)
@@ -56,7 +56,7 @@ img.paste(foreground, (x_3+200, y_1+100), foreground)
 
 
 
-foreground = Image.open("allumette.png")
+foreground = Image.open("../allumette.png")
 img.paste(foreground, (x_1, y_3+100), foreground)
 img.paste(foreground, (x_2+epsilon, y_3+100), foreground)
 img.paste(foreground, (x_3+200, y_3+100), foreground)
