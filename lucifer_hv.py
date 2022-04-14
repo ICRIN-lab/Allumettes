@@ -3,38 +3,39 @@ from PIL import Image, ImageDraw, ImageFont
 from screeninfo import get_monitors
 from random import randint
 
-L=[]
-J=[]
+
 def check_distance_x (L,x):
     for element in L:
-        if abs(x-element)<50:
+        if abs(x-element)<20:
             return False
     return True
 
 def check_distance_y(J,y):
     for coordinate in J:
-        if abs(y-coordinate)<50:
+        if abs(y-coordinate)<20:
             return False
     return True
 
 
-nb_allumettes=randint(3,10)
-nb_img=2
+nb_allumettes=randint(3,15)
+nb_img=25
 
 for i in range (nb_img):
+    L = []
+    J = []
     img = Image.new(mode="RGB", size=(get_monitors()[0].width, get_monitors()[0].height), color=(0, 0, 0))
     for j in range(nb_allumettes):
         foreground = Image.open("allumette.png").rotate(90, expand=True)
-        x = randint(100,900)
+        x = randint(50,900)
         while not check_distance_x(L,x):
-            x = randint(100, 900)
+            x = randint(50, 900)
         L.append(x)
         y = 100
         img.paste(foreground, (x, y), foreground)
         foreground = Image.open("allumette.png").rotate(90, expand=True)
-        x = randint(1000,1500)
+        x = randint(1000,1900)
         while not check_distance_x(L, x):
-            x = randint(1000,1500)
+            x = randint(1000,1900)
         L.append(x)
         y = 550
         img.paste(foreground, (x, y), foreground)
@@ -52,7 +53,6 @@ for i in range (nb_img):
             y = randint(100,500)
         J.append(y)
         img.paste(foreground, (x, y), foreground)
-img.save(f'img/lucifer_hv_{i}.png')
-print(f"Image n°{i}")
+    img.save(f'img/horiz_vert/lucifer_hv_{i}.png')
 
 

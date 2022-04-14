@@ -67,6 +67,6 @@ img.paste(foreground, (x_3, y_1), foreground)
 
 img.show()
 
-img.save(f'img/lucifer_shape_love.png')
+img.save(f'img/shapes/lucifer_shape_love.png')
 
 
