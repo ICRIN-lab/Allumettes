@@ -3,4 +3,7 @@ __pycache__/
 task_template.py
 img/.DS_Store
 csv/*.csv
+<<<<<<< HEAD
 .DS_Store
+=======
+>>>>>>> ac9fd7dea89b59e156ce94c25ab3ce7c75e88900
