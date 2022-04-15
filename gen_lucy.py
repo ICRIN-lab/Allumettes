@@ -1,4 +1,6 @@
 # petit code qui génère un nombre aléatoire d'allumettes
+import random
+
 from PIL import Image, ImageDraw, ImageFont
 from screeninfo import get_monitors
 from random import randint
@@ -16,10 +18,10 @@ def gen_allum(nb_img):
             x = randint(0, get_monitors()[0].width - 300)
             y = randint(0, get_monitors()[0].height - 300)
             img.paste(foreground, (x, y), foreground)
-            img.save(f"img/allum_{i}.png")
+            img.save(f"img/img_{i}.png")
         print(f"Image n°{i}")
     return choices
 
 
-L_choices = gen_allum(100)
+L_choices = gen_allum(45)
 print(L_choices)
