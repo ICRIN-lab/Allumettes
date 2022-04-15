@@ -24,7 +24,7 @@ y_5=960
 epsilon = 50 #espace entre lettres
 
 # borders :
-foreground = Image.open("/Users/leilaelamine/PycharmProjects/lucifer/allumette.png").rotate(90, expand=True)
+foreground = Image.open("allumette.png").rotate(90, expand=True)
 img.paste(foreground, (x_0, y_0), foreground)
 img.paste(foreground, (x_0, y_2), foreground)
 img.paste(foreground, (x_0, y_4), foreground)
@@ -32,7 +32,7 @@ img.paste(foreground, (x_6, y_0), foreground)
 img.paste(foreground, (x_6, y_2), foreground)
 img.paste(foreground, (x_6, y_4), foreground)
 
-foreground = Image.open("/Users/leilaelamine/PycharmProjects/lucifer/allumette.png")
+foreground = Image.open("allumette.png")
 img.paste(foreground, (x_0, y_0), foreground)
 img.paste(foreground, (x_1, y_0), foreground)
 img.paste(foreground, (x_2, y_0), foreground)
@@ -48,32 +48,32 @@ img.paste(foreground, (x_5, y_5), foreground)
 
 
 #Letters :
-foreground = Image.open("/Users/leilaelamine/PycharmProjects/lucifer/allumette.png").rotate(-25, expand=True)
+foreground = Image.open("allumette.png").rotate(-25, expand=True)
 img.paste(foreground, (x_1, y_2+100), foreground)
 img.paste(foreground, (x_2-30, y_3+100), foreground)
 img.paste(foreground, (x_3-50, y_3+200), foreground)
-foreground = Image.open("/Users/leilaelamine/PycharmProjects/lucifer/allumette.png").rotate(115, expand=True)
+foreground = Image.open("allumette.png").rotate(115, expand=True)
 img.paste(foreground, (x_3+80, y_2+180), foreground)
 img.paste(foreground, (x_3-20, y_2-50), foreground)
 img.paste(foreground, (x_3-120, y_0+20), foreground)
-foreground = Image.open("/Users/leilaelamine/PycharmProjects/lucifer/allumette.png").rotate(-115, expand=True)
+foreground = Image.open("allumette.png").rotate(-115, expand=True)
 img.paste(foreground, (x_2+20, y_0+20), foreground)
 img.paste(foreground, (x_2-80, y_1+100), foreground)
 img.paste(foreground, (x_1+80, y_3+80), foreground)
-foreground = Image.open("/Users/leilaelamine/PycharmProjects/lucifer/allumette.png").rotate(25, expand=True)
+foreground = Image.open("allumette.png").rotate(25, expand=True)
 img.paste(foreground, (x_1+100, y_3+180), foreground)
 img.paste(foreground, (x_2+70, y_3+90), foreground)
 img.paste(foreground, (x_3+20, y_2+110), foreground)
 
 
 
-foreground = Image.open("/Users/leilaelamine/PycharmProjects/lucifer/allumette.png")
+foreground = Image.open("allumette.png")
 img.paste(foreground, (x_1, y_2+100), foreground)
 img.paste(foreground, (x_2, y_2+100), foreground)
 img.paste(foreground, (x_3, y_2+100), foreground)
 
 print(f'[33,{33+random.randint(5,20)}]') #nb d'allumettes
 
-img.save(f'/Users/leilaelamine/PycharmProjects/lucifer/img/img_48.png')
+img.save(f'img/img_48.png')
 
 
