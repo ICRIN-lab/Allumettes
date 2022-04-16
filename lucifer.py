@@ -30,7 +30,7 @@ class Lucifer(TaskTemplate):
         f"de droite. \n\n - appuyez sur la touche '{no_key_name}' pour selectionner la réponse de "
         f"gauche.",
         "N'appuyez sur les touches que lorsqu'on vous le demande.",
-        "Placez vos index sur les touches 'a' " "et 'p'.",
+        f"Placez vos index sur les touches {no_key_code} et {yes_key_code}.",
     ]
     csv_headers = [
         "no_trial",
