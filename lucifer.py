@@ -26,8 +26,8 @@ class Lucifer(TaskTemplate):
 
     next = f"Pour passer à l'instruction suivante, appuyez sur la touche {yes_key_name}"
     instructions = [
-        f"Dans cette expérience : \n\n - appuyez sur la touche '{yes_key_name}' pour selectionner la réponse "
-        f"de droite. \n\n - appuyez sur la touche '{no_key_name}' pour selectionner la réponse de "
+        f"Dans cette expérience : \n\n - appuyez sur la touche {yes_key_name} pour selectionner la réponse "
+        f"de droite. \n\n - appuyez sur la touche {no_key_name} pour selectionner la réponse de "
         f"gauche.",
         "N'appuyez sur les touches que lorsqu'on vous le demande.",
         f"Placez vos index sur les touches {no_key_name} et {yes_key_name}."
@@ -101,7 +101,7 @@ class Lucifer(TaskTemplate):
             )
         self.create_visual_text("").draw()
         self.win.flip()
-        if no_trial == 50 and self.score >= 40:
+        if no_trial == 49 and self.score >= 40:
             waiting_time /= 2
             self.group = "pro"
 
