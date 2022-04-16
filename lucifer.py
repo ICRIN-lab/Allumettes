@@ -1,23 +1,23 @@
 import random
 import time
-from random import randint, choice
-from list_ans import L
+
 import os
-from psychopy import core, visual
-from task_template import TaskTemplate
+from psychopy import core
 from screeninfo import get_monitors
-
-screen = get_monitors()[0]
-width = screen.width
-height = screen.height
+from Template_Task_Psychopy.task_template import TaskTemplate
+from list_ans import L_ans, L_img
 
 
-class AllumettesTask(TaskTemplate):
-    yes_key_name = "p"
-    yes_key_code = "p"
-    no_key_code = "a"
-    no_key_name = "a"
-    quit_code = "q"
+class Lucifer(TaskTemplate):
+    # IMPORTANT ! To MODIFY IF NEEDED
+    nb_ans = 2
+    response_pad = True  # has to be set on "True" on production.
+    # END OF IMPORTANT
+    yes_key_name = "verte"
+    yes_key_code = "6"
+    no_key_name = "rouge"
+    no_key_code = "0"
+    quit_code = "3"
     keys = ["space", yes_key_name, no_key_name, quit_code]
     launch_example = True
     trials = 100
@@ -50,23 +50,19 @@ class AllumettesTask(TaskTemplate):
 
     def task(self, no_trial, exp_start_timestamp, trial_start_timestamp, practice=False):
         waiting_time = 2
-        self.create_visual_image(image=f"img/img_{no_trial}.png", size=(width, height)).draw()
+        self.create_visual_image(image=f"img/{L_img[no_trial]}", size=[get_monitors()[0].width, get_monitors()[0].height]).draw()
         self.win.flip()
         core.wait(waiting_time)
-        L = [[83, 103], [55, 70], [32, 45], [24, 44], [30, 44], [41, 58], [84, 92], [38, 52], [62, 74], [41, 51], [53, 72], [35, 53], [88, 98], [28, 38], [65, 74], [14, 34], [16, 36], [24, 32], [36, 48], [28, 45], [31, 43], [23, 29], [58, 64], [81, 92], [44, 50], [32, 51], [60, 75], [81, 86], [43, 62], [35, 45], [31, 44], [77, 83], [13, 30], [25, 43], [63, 80], [75, 90], [29, 42], [14, 27], [26, 42], [54, 71], [13, 31], [67, 76], [72, 81], [23, 29], [62, 68], [33, 49], [26, 31], [33, 34], [33, 53], [33, 52], [8, 16], [20, 31], [11, 30], [6, 15], [29, 46], [29, 42], [19, 39], [9, 14], [12, 27], [26, 32], [8, 28], [25, 36], [18, 29], [30, 35], [13, 33], [20, 31], [29, 41], [24, 44], [23, 33], [17, 22], [24, 35], [20, 32], [30, 41], [15, 26], [9, 16], [36, 19], [48, 23], [36, 17], [12, 18], [20, 22], [60, 28], [20, 14], [60, 35], [24, 14], [12, 13], [40, 22], [32, 21], [52, 20], [16, 21], [24, 14], [28, 19], [36, 21], [56, 30], [32, 27], [48, 32], [40, 25], [36, 22], [12, 18], [52, 31], [36, 23]]
         seed = random.randint(0, 1)
-        left_ans = L[no_trial][seed]
-        self.create_visual_text(text=f"Combien d'allumettes avez-vous vu ? ( {L[no_trial].pop(seed)} / {L[no_trial][0]})").draw()
+        left_ans = L_ans[no_trial][seed]
+        self.create_visual_text(text=f"Combien d'allumettes avez-vous vu ? ( {L_ans[no_trial].pop(seed)} / {L_ans[no_trial][0]})").draw()
         self.win.flip()
         if seed:
-            good_ans = "p"
+            good_ans = self.yes_key_code
         else:
-            good_ans = "a"
-        try:
-            resp, rt = self.get_response_with_time()
-        except (TypeError, AttributeError):
-            resp = ""
-            rt = 1
+            good_ans = self.no_key_code
+        time_stamp = time.time() - exp_start_timestamp
+        resp, rt = self.get_response_with_time(self.response_pad)
 
         if resp == good_ans:
             correct = True
@@ -74,24 +70,39 @@ class AllumettesTask(TaskTemplate):
                 self.score += 1
         else:
             correct = False
-
-        self.update_csv(
-            no_trial,
-            self.participant,
-            left_ans,
-            L[no_trial][0],
-            [left_ans if resp == "a" else L[no_trial][0]][0],
-            [left_ans if good_ans == "a" else L[no_trial][0]][0],
-            correct,
-            practice,
-            self.group,
-            self.score,
-            round(rt, 2),
-            round(time.time() - exp_start_timestamp, 2),
-        )
+        if self.response_pad:
+            self.update_csv(
+                no_trial,
+                self.participant,
+                left_ans,
+                L_ans[no_trial][0],
+                [left_ans if resp == self.no_key_code else L_ans[no_trial][0]][0],
+                [left_ans if good_ans == self.no_key_code else L_ans[no_trial][0]][0],
+                correct,
+                practice,
+                self.group,
+                self.score,
+                round(rt - time_stamp, 2),
+                round(rt, 2),
+            )
+        else:
+            self.update_csv(
+                no_trial,
+                self.participant,
+                left_ans,
+                L_ans[no_trial][0],
+                [left_ans if resp == self.no_key_code else L_ans[no_trial][0]][0],
+                [left_ans if good_ans == self.no_key_code else L_ans[no_trial][0]][0],
+                correct,
+                practice,
+                self.group,
+                self.score,
+                round(rt, 2),
+                round(time.time() - exp_start_timestamp, 2),
+            )
         self.create_visual_text("").draw()
         self.win.flip()
-        if no_trial == 53 and self.score >= 40:
+        if no_trial == 50 and self.score >= 40:
             waiting_time /= 2
             self.group = "pro"
 
@@ -108,18 +119,18 @@ class AllumettesTask(TaskTemplate):
         example.draw()
         self.create_visual_text(self.next, pos=(0, -0.4), font_size=0.04).draw()
         self.win.flip()
-        self.wait_yes()
-        for i in range(3):
-            if self.task(i, exp_start_timestamp, time.time(), True):
+        self.wait_yes(self.response_pad)
+        for u in range(100, 103):
+            if self.task(u, exp_start_timestamp, time.time(), True):
                 score_example += 1
                 self.create_visual_text(
-                    f"Bravo ! Vous avez {score_example}/{i + 1}"
+                    f"Bravo ! Vous avez {score_example}/{u - 99}"
                 ).draw()
                 self.win.flip()
                 core.wait(2)
             else:
                 self.create_visual_text(
-                    f"Dommage... Vous avez {score_example}/{i + 1}"
+                    f"Dommage... Vous avez {score_example}/{u - 99}"
                 ).draw()
                 self.win.flip()
                 core.wait(2)
@@ -138,7 +149,5 @@ class AllumettesTask(TaskTemplate):
         exit()
 
 
-if not os.path.isdir("csv"):
-    os.mkdir("csv")
-exp = AllumettesTask("csv")
+exp = Lucifer("csv")
 exp.start()

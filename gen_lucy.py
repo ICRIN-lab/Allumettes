@@ -22,14 +22,10 @@ def gen_allum(nb_img):
             x = randint(0, get_monitors()[0].width - 300)
             y = randint(0, get_monitors()[0].height - 300)
             img.paste(foreground, (x, y), foreground)
-            img.save(f"img/img_{i}.png")
+            img.save(f"img/example_{i+997}.png")
         print(f"Image n°{i}")
     return choices
 
 
-<<<<<<< HEAD
-L_choices = gen_allum(103)
-=======
-L_choices = gen_allum(45)
->>>>>>> ac9fd7dea89b59e156ce94c25ab3ce7c75e88900
+L_choices = gen_allum(3)
 print(L_choices)

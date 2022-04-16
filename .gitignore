@@ -5,5 +5,5 @@ __pycache__/
 img/.DS_Store
 
 #Python and csv files
-task_template.py
+Template_Task_Psychopy/
 csv/*.csv
