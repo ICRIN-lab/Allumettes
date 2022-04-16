@@ -25,7 +25,6 @@ class Lucifer(TaskTemplate):
     group = "common"
 
     next = f"Pour passer à l'instruction suivante, appuyez sur la touche {yes_key_name}"
-    good_luck = f"Vous êtes prêt ? Appuyez sur la touche {yes_key_name} pour démarrer"
     instructions = [
         f"Dans cette expérience : \n\n - appuyez sur la touche '{yes_key_name}' pour selectionner la réponse "
         f"de droite. \n\n - appuyez sur la touche '{no_key_name}' pour selectionner la réponse de "
@@ -134,11 +133,7 @@ class Lucifer(TaskTemplate):
                 ).draw()
                 self.win.flip()
                 core.wait(2)
-        self.create_visual_text("+").draw()
-        self.win.flip()
-        core.wait(1)
-        results = self.create_visual_text(f"Vous avez obtenu {score_example}/3")
-        results.draw()
+        self.create_visual_text(f"Vous avez obtenu {score_example}/3").draw()
         self.win.flip()
         core.wait(5)
         tutoriel_end.draw()
