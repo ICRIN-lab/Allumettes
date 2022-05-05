@@ -54,7 +54,7 @@ class Lucifer(TaskTemplate):
         core.wait(waiting_time)
         seed = random.randint(0, 1)
         left_ans = L_ans[no_trial][seed]
-        self.create_visual_text(text=f"Combien d'allumettes avez-vous vu ? ( {L_ans[no_trial].pop(seed)} / {L_ans[no_trial][0]})").draw()
+        self.create_visual_text(text=f"Combien d'allumettes avez-vous vu ? ({L_ans[no_trial].pop(seed)} / {L_ans[no_trial][0]})").draw()
         self.win.flip()
         if seed:
             good_ans = self.yes_key_code
@@ -118,7 +118,7 @@ class Lucifer(TaskTemplate):
         example.draw()
         self.create_visual_text(self.next, pos=(0, -0.4), font_size=0.04).draw()
         self.win.flip()
-        self.wait_yes(self.response_pad)
+        self.wait_yes(self.yes_key_code)
         for u in range(100, 103):
             if self.task(u, time.time(), True):
                 score_example += 1
@@ -145,6 +145,5 @@ class Lucifer(TaskTemplate):
 
 
 exp_start_timestamp = time.time()
-print(exp_start_timestamp)
 exp = Lucifer("csv", exp_start_timestamp)
 exp.start()
