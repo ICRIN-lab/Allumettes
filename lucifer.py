@@ -11,7 +11,7 @@ from list_ans import L_ans, L_img
 class Lucifer(TaskTemplate):
     # IMPORTANT ! To MODIFY IF NEEDED
     nb_ans = 2
-    response_pad = True  # has to be set on "True" on production.
+    response_pad = False  # has to be set on "True" on production.
     # END OF IMPORTANT
     yes_key_name = "verte"
     yes_key_code = "6"
@@ -47,7 +47,7 @@ class Lucifer(TaskTemplate):
         "time_stamp",
     ]
 
-    def task(self, no_trial, exp_start_timestamp, trial_start_timestamp, practice=False):
+    def task(self, no_trial, trial_start_timestamp, practice=False):
         waiting_time = 2
         self.create_visual_image(image=f"img/{L_img[no_trial]}", size=[get_monitors()[0].width, get_monitors()[0].height]).draw()
         self.win.flip()
@@ -60,7 +60,7 @@ class Lucifer(TaskTemplate):
             good_ans = self.yes_key_code
         else:
             good_ans = self.no_key_code
-        time_stamp = time.time() - exp_start_timestamp
+        time_stamp = time.time() - self.exp_start_timestamp
         resp, rt = self.get_response_with_time(self.response_pad)
 
         if resp == good_ans:
@@ -97,7 +97,7 @@ class Lucifer(TaskTemplate):
                 self.group,
                 self.score,
                 round(rt, 2),
-                round(time.time() - exp_start_timestamp, 2),
+                round(time.time() - self.exp_start_timestamp, 2),
             )
         self.create_visual_text("").draw()
         self.win.flip()
@@ -109,7 +109,7 @@ class Lucifer(TaskTemplate):
         if practice:
             return correct
 
-    def example(self, exp_start_timestamp):
+    def example(self):
         score_example = 0
         example = self.create_visual_text(text="Commençons par un petit entraînement")
         tutoriel_end = self.create_visual_text(
@@ -120,7 +120,7 @@ class Lucifer(TaskTemplate):
         self.win.flip()
         self.wait_yes(self.response_pad)
         for u in range(100, 103):
-            if self.task(u, exp_start_timestamp, time.time(), True):
+            if self.task(u, time.time(), True):
                 score_example += 1
                 self.create_visual_text(
                     f"Bravo ! Vous avez {score_example}/{u - 99}"
@@ -144,5 +144,7 @@ class Lucifer(TaskTemplate):
         exit()
 
 
-exp = Lucifer("csv")
+exp_start_timestamp = time.time()
+print(exp_start_timestamp)
+exp = Lucifer("csv", exp_start_timestamp)
 exp.start()
