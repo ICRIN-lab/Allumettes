@@ -54,7 +54,7 @@ class Lucifer(TaskTemplate):
         core.wait(waiting_time)
         seed = random.randint(0, 1)
         left_ans = L_ans[no_trial][seed]
-        self.create_visual_text(text=f"Combien d'allumettes avez-vous vu ? ({L_ans[no_trial].pop(seed)} / {L_ans[no_trial][0]})").draw()
+        self.create_visual_text(text=f"Combien d'allumettes avez-vous vu ? {L_ans[no_trial].pop(seed)} / {L_ans[no_trial][0]}").draw()
         self.win.flip()
         if seed:
             good_ans = self.yes_key_code
