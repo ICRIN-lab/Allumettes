@@ -11,7 +11,7 @@ from list_ans import L_ans, L_img
 class Lucifer(TaskTemplate):
     # IMPORTANT ! To MODIFY IF NEEDED
     nb_ans = 2
-    response_pad = False  # has to be set on "True" on production.
+    response_pad = True  # has to be set on "True" on production.
     # END OF IMPORTANT
     yes_key_name = "verte"
     yes_key_code = "6"
