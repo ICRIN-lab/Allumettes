@@ -66,7 +66,7 @@ class Lucifer(TaskTemplate):
 
         if resp == good_ans:
             result = 1
-            if not self.launch_example:
+            if no_trial <= 100:
                 self.score += 1
         else:
             result = 0
