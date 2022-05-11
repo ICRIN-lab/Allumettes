@@ -60,7 +60,7 @@ class Lucifer(TaskTemplate):
             good_ans = self.yes_key_code
         else:
             good_ans = self.no_key_code
-        time_stamp = time.time() - self.exp_start_timestamp
+        time_stamp = time.time() - self.response_pad_timestamp
         resp, rt = self.get_response_with_time(self.response_pad)
 
         if resp == good_ans:
