@@ -23,6 +23,7 @@ class Lucifer(TaskTemplate):
     trials = 100
     score = 0
     group = "common"
+    exp_start_timestamp = time.time()
 
     next = f"Pour passer à l'instruction suivante, appuyez sur la touche {yes_key_name}"
     instructions = [
@@ -45,7 +46,6 @@ class Lucifer(TaskTemplate):
         "reaction_time",
         "time_stamp",
     ]
-    exp_start_timestamp = time.time()
 
     def task(self, no_trial):
         waiting_time = 2
