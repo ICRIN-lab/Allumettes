@@ -23,6 +23,7 @@ class Lucifer(TaskTemplate):
     trials = 100
     score = 0
     group = "common"
+    exp_start_timestamp = time.time()
 
     next = f"Pour passer à l'instruction suivante, appuyez sur la touche {yes_key_name}"
     instructions = [
@@ -40,35 +41,34 @@ class Lucifer(TaskTemplate):
         "ans_candidate",
         "good_ans",
         "correct",
-        "practice",
         "group",
         "score",
         "reaction_time",
         "time_stamp",
     ]
 
-    def task(self, no_trial, exp_start_timestamp, trial_start_timestamp, practice=False):
+    def task(self, no_trial):
         waiting_time = 2
         self.create_visual_image(image=f"img/{L_img[no_trial]}", size=[get_monitors()[0].width, get_monitors()[0].height]).draw()
         self.win.flip()
         core.wait(waiting_time)
         seed = random.randint(0, 1)
         left_ans = L_ans[no_trial][seed]
-        self.create_visual_text(text=f"Combien d'allumettes avez-vous vu ? ({L_ans[no_trial].pop(seed)} / {L_ans[no_trial][0]})").draw()
+        self.create_visual_text(text=f"Combien d'allumettes avez-vous vu ? {L_ans[no_trial].pop(seed)} / {L_ans[no_trial][0]}").draw()
         self.win.flip()
         if seed:
             good_ans = self.yes_key_code
         else:
             good_ans = self.no_key_code
-        time_stamp = time.time() - exp_start_timestamp
+        time_stamp = time.time() - self.exp_start_timestamp
         resp, rt = self.get_response_with_time(self.response_pad)
 
         if resp == good_ans:
-            correct = True
-            if not practice:
+            result = 1
+            if not self.launch_example:
                 self.score += 1
         else:
-            correct = False
+            result = 0
         if self.response_pad:
             self.update_csv(
                 no_trial,
@@ -77,8 +77,7 @@ class Lucifer(TaskTemplate):
                 L_ans[no_trial][0],
                 [left_ans if resp == self.no_key_code else L_ans[no_trial][0]][0],
                 [left_ans if good_ans == self.no_key_code else L_ans[no_trial][0]][0],
-                correct,
-                practice,
+                result,
                 self.group,
                 self.score,
                 round(rt - time_stamp, 2),
@@ -92,12 +91,11 @@ class Lucifer(TaskTemplate):
                 L_ans[no_trial][0],
                 [left_ans if resp == self.no_key_code else L_ans[no_trial][0]][0],
                 [left_ans if good_ans == self.no_key_code else L_ans[no_trial][0]][0],
-                correct,
-                practice,
+                result,
                 self.group,
                 self.score,
                 round(rt, 2),
-                round(time.time() - exp_start_timestamp, 2),
+                round(time.time() - self.exp_start_timestamp, 2),
             )
         self.create_visual_text("").draw()
         self.win.flip()
@@ -106,10 +104,10 @@ class Lucifer(TaskTemplate):
             self.group = "pro"
 
         core.wait(0.5)
-        if practice:
-            return correct
+        if self.launch_example:
+            return result
 
-    def example(self, exp_start_timestamp):
+    def example(self):
         score_example = 0
         example = self.create_visual_text(text="Commençons par un petit entraînement")
         tutoriel_end = self.create_visual_text(
@@ -118,9 +116,9 @@ class Lucifer(TaskTemplate):
         example.draw()
         self.create_visual_text(self.next, pos=(0, -0.4), font_size=0.04).draw()
         self.win.flip()
-        self.wait_yes(self.response_pad)
+        self.wait_yes(self.yes_key_code)
         for u in range(100, 103):
-            if self.task(u, exp_start_timestamp, time.time(), True):
+            if self.task(u):
                 score_example += 1
                 self.create_visual_text(
                     f"Bravo ! Vous avez {score_example}/{u - 99}"
