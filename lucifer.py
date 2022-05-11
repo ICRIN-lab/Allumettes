@@ -11,7 +11,7 @@ from list_ans import L_ans, L_img
 class Lucifer(TaskTemplate):
     # IMPORTANT ! To MODIFY IF NEEDED
     nb_ans = 2
-    response_pad = True  # has to be set on "True" on production.
+    response_pad = False  # has to be set on "True" on production.
     # END OF IMPORTANT
     yes_key_name = "verte"
     yes_key_code = "6"
@@ -40,14 +40,14 @@ class Lucifer(TaskTemplate):
         "ans_candidate",
         "good_ans",
         "correct",
-        "practice",
         "group",
         "score",
         "reaction_time",
         "time_stamp",
     ]
+    exp_start_timestamp = time.time()
 
-    def task(self, no_trial, trial_start_timestamp, practice=False):
+    def task(self, no_trial):
         waiting_time = 2
         self.create_visual_image(image=f"img/{L_img[no_trial]}", size=[get_monitors()[0].width, get_monitors()[0].height]).draw()
         self.win.flip()
@@ -64,11 +64,11 @@ class Lucifer(TaskTemplate):
         resp, rt = self.get_response_with_time(self.response_pad)
 
         if resp == good_ans:
-            correct = True
-            if not practice:
+            result = 1
+            if not self.launch_example:
                 self.score += 1
         else:
-            correct = False
+            result = 0
         if self.response_pad:
             self.update_csv(
                 no_trial,
@@ -77,8 +77,7 @@ class Lucifer(TaskTemplate):
                 L_ans[no_trial][0],
                 [left_ans if resp == self.no_key_code else L_ans[no_trial][0]][0],
                 [left_ans if good_ans == self.no_key_code else L_ans[no_trial][0]][0],
-                correct,
-                practice,
+                result,
                 self.group,
                 self.score,
                 round(rt - time_stamp, 2),
@@ -92,8 +91,7 @@ class Lucifer(TaskTemplate):
                 L_ans[no_trial][0],
                 [left_ans if resp == self.no_key_code else L_ans[no_trial][0]][0],
                 [left_ans if good_ans == self.no_key_code else L_ans[no_trial][0]][0],
-                correct,
-                practice,
+                result,
                 self.group,
                 self.score,
                 round(rt, 2),
@@ -106,8 +104,8 @@ class Lucifer(TaskTemplate):
             self.group = "pro"
 
         core.wait(0.5)
-        if practice:
-            return correct
+        if self.launch_example:
+            return result
 
     def example(self):
         score_example = 0
@@ -120,7 +118,7 @@ class Lucifer(TaskTemplate):
         self.win.flip()
         self.wait_yes(self.yes_key_code)
         for u in range(100, 103):
-            if self.task(u, time.time(), True):
+            if self.task(u):
                 score_example += 1
                 self.create_visual_text(
                     f"Bravo ! Vous avez {score_example}/{u - 99}"
@@ -144,6 +142,5 @@ class Lucifer(TaskTemplate):
         exit()
 
 
-exp_start_timestamp = time.time()
-exp = Lucifer("csv", exp_start_timestamp)
+exp = Lucifer("csv")
 exp.start()
