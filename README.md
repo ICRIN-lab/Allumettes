@@ -26,9 +26,9 @@ If you guessed or at least know what we are talking about, remember that scene w
 If you have no idea what we are talking about, "Step 3" is mandatory (for obvious reasons).
 
 
-All the images are stored in the file "img". Our code generates random number of lucifers, with different orientations and shapes. You can find it in [generate_lucifers](https://github.com/ICRIN-lab/lucifer/tree/main/generate_lucifers")   
+All the images are stored in the file "img". Our code generates random number of lucifers, with different orientations and shapes. You can find it in [generate_lucifers](https://github.com/ICRIN-lab/lucifer/tree/main/generate_lucifers").   
 
-There are 100 trials. Each visual stimuli contains a random number of lucifer in different orientations and shapes, and is displayed for  2 seconds. A question appears afterward "Combien d'allumettes avez-vous vu ?" *in french* ("How many lucifers are there ?"). The participants have to choose among 2 propositions, only one is right.
+There are 100 trials. Each visual stimuli contains a random number of lucifers in different orientations and shapes, and is displayed for  2 seconds. A question appears afterward "Combien d'allumettes avez-vous vu ?" *in french* ("How many lucifers are there ?"). The participants have to choose among 2 propositions, only one is right.
 
 The task starts with instructions written in french, and are designed for "Trackpad" response.
 
