@@ -18,7 +18,7 @@ def gen_allum(nb_img):
         )
         for j in range(nb_allumettes):
             angle = randint(0, 180)
-            foreground = Image.open("allumette.png").rotate(angle, expand=True)
+            foreground = Image.open("../allumette.png").rotate(angle, expand=True)
             x = randint(0, get_monitors()[0].width - 300)
             y = randint(0, get_monitors()[0].height - 300)
             img.paste(foreground, (x, y), foreground)
