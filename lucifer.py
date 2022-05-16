@@ -12,6 +12,7 @@ class Lucifer(TaskTemplate):
     # IMPORTANT ! To MODIFY IF NEEDED
     nb_ans = 2
     response_pad = True  # has to be set on "True" on production.
+    eye_tracker_study = True
     # END OF IMPORTANT
     yes_key_name = "verte"
     yes_key_code = "6"
@@ -62,7 +63,7 @@ class Lucifer(TaskTemplate):
             good_ans = self.no_key_code
 
         time_stamp = time.time() - self.response_pad_timestamp
-        resp, rt = self.get_response_with_time(self.response_pad)
+        resp, rt = self.get_response_with_time()
 
         if resp == good_ans:
             result = 1
