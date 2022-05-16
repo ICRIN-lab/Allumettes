@@ -139,9 +139,6 @@ class Lucifer(TaskTemplate):
         self.win.flip()
         core.wait(5)
 
-    def quit_experiment(self):
-        exit()
-
 
 exp = Lucifer("csv")
 exp.start()
