@@ -12,7 +12,7 @@ class Lucifer(TaskTemplate):
     # IMPORTANT ! To MODIFY IF NEEDED
     nb_ans = 2
     response_pad = True  # has to be set on "True" on production.
-    eye_tracker_study = True
+    eye_tracker_study = True  # same
     # END OF IMPORTANT
     yes_key_name = "verte"
     yes_key_code = "6"
