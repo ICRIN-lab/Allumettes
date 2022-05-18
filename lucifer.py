@@ -41,7 +41,7 @@ class Lucifer(TaskTemplate):
         "right_ans",
         "ans_candidate",
         "good_ans",
-        "correct",
+        "result",
         "group",
         "score",
         "reaction_time",
