@@ -8,3 +8,5 @@ img/.DS_Store
 Template_Task_Psychopy
 csv/*.csv
 images_readme
+csv_eyetracker/*.tsv
+
