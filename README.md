@@ -1,6 +1,6 @@
 # Lucifer Task 
 
-##CONTENTS OF THIS FILE
+## CONTENTS OF THIS FILE
 
 * Introduction
 * Lucifer Task
@@ -11,11 +11,11 @@
 * Contact
 
 
-##INTRODUCTION
+## INTRODUCTION
 
 Our research team is studying different aspects of psychiatric disorders. Our present project is all about exploring obssessive compulsive disorders' secret garden. For that matter, we designed original home-made cognitive tasks, fresh out of the oven!
 
-##Lucifer Task
+## Lucifer Task
 
 If you have tried the other cognitive tasks, you probably think that we are going to set the stage on fire one more time with this Lucifer task. Well, you're not totally wrong, however for security matters that is not what we are asking our participants. 
 
@@ -32,17 +32,18 @@ There are 100 trials. Each visual stimuli contains a random number of lucifers i
 
 The task starts with instructions written in french, and are designed for "Trackpad" response.
 
-##Task Design example
+## Task Design example
 
 Here is an example of the task. 
-![lucifer](images_readme/img_readme.png)
-![lucifer](images_readme/question_readme.png) 
+
+![img_readme](https://user-images.githubusercontent.com/92592951/169014965-6b71fa07-aa2c-463d-afea-96554cd59b6c.png)
+![question_readme](https://user-images.githubusercontent.com/92592951/169014991-1fe010ee-6667-4fa5-98c2-c57e3ba7ab43.png)
 
 
 
-##REQUIREMENTS
+## REQUIREMENTS
 
-###Imports :
+### Imports :
 
 We use the package PsychoPy under Python 3.6 to run the tasks. Furthermore, Lucifer Task requires the import of time, as the time spent by the participants is a valuable data.
 ```python
@@ -68,7 +69,7 @@ Here's the link :  <a href="https://github.com/ICRIN-lab/Template_Task_Psychopy.
 
 * **Step 3**: Watch Rain Man.
 
-###Specificities :
+### Specificities :
 
 If you want to try this cognitive task using your keyboard, don't forget to the response_pad to False
 
@@ -78,15 +79,15 @@ class SevenDiff(TaskTemplate):
     response_pad = False  # has to be set on "True" if a trackpad is used.
 ```
 
-##Contributions
+## Contributions
 
 To contribute, please fork the repository, hack in a feature branch, and send a pull request.
 
-##More informations
+## More informations
 
 Homepage: [iCRIN Lab](http://icrin.fr/)
 
-##Contact us
+## Contact us
 
 Mail : contact@icrin.fr
 Twitter : https://twitter.com/RedwanMaatoug
