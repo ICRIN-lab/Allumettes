@@ -65,12 +65,9 @@ class Lucifer(TaskTemplate):
         time_stamp = time.time() - self.response_pad_timestamp
         resp, rt = self.get_response_with_time()
 
-        if resp == good_ans:
-            result = 1
-            if no_trial < 100:
-                self.score += 1
-        else:
-            result = 0
+        if resp == good_ans and no_trial < 100:
+            self.score += 1
+
         if self.response_pad:
             self.update_csv(
                 no_trial,
@@ -79,7 +76,7 @@ class Lucifer(TaskTemplate):
                 L_ans[no_trial][0],
                 [left_ans if resp == self.no_key_code else L_ans[no_trial][0]][0],
                 [left_ans if good_ans == self.no_key_code else L_ans[no_trial][0]][0],
-                result,
+                int(resp == good_ans),
                 self.group,
                 self.score,
                 round(rt - time_stamp, 2),
@@ -93,7 +90,7 @@ class Lucifer(TaskTemplate):
                 L_ans[no_trial][0],
                 [left_ans if resp == self.no_key_code else L_ans[no_trial][0]][0],
                 [left_ans if good_ans == self.no_key_code else L_ans[no_trial][0]][0],
-                result,
+                int(resp == good_ans),
                 self.group,
                 self.score,
                 round(rt, 2),
