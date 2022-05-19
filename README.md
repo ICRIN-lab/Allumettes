@@ -36,8 +36,9 @@ The task starts with instructions written in french, and are designed for "Track
 
 Here is an example of the task. 
 
-![img_readme](https://user-images.githubusercontent.com/92592951/169014965-6b71fa07-aa2c-463d-afea-96554cd59b6c.png)
-![question_readme](https://user-images.githubusercontent.com/92592951/169014991-1fe010ee-6667-4fa5-98c2-c57e3ba7ab43.png)
+
+<img src="img_readme/luci_rm.png" width="400">
+<img src="img_readme/qst_readme.png" width="400">
 
 
 
