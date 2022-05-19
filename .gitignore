@@ -7,3 +7,6 @@ img/.DS_Store
 #Python and csv files
 Template_Task_Psychopy
 csv/*.csv
+images_readme
+csv_eyetracker/*.tsv
+
