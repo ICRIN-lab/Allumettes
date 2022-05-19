@@ -104,7 +104,7 @@ class Lucifer(TaskTemplate):
 
         core.wait(0.5)
         if self.launch_example:
-            return result
+            return resp == good_ans
 
     def example(self):
         score_example = 0
