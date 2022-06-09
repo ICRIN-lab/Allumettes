@@ -35,8 +35,8 @@ class Lucifer(TaskTemplate):
         f"Placez vos index sur les touches {no_key_name} et {yes_key_name}."
     ]
     csv_headers = [
-        "no_trial",
         "id_candidate",
+        "no_trial",
         "left_ans",
         "right_ans",
         "ans_candidate",
@@ -70,8 +70,8 @@ class Lucifer(TaskTemplate):
 
         if self.response_pad:
             self.update_csv(
-                no_trial,
                 self.participant,
+                no_trial,
                 left_ans,
                 L_ans[no_trial][0],
                 [left_ans if resp == self.no_key_code else L_ans[no_trial][0]][0],
@@ -84,8 +84,8 @@ class Lucifer(TaskTemplate):
             )
         else:
             self.update_csv(
-                no_trial,
                 self.participant,
+                no_trial,
                 left_ans,
                 L_ans[no_trial][0],
                 [left_ans if resp == self.no_key_code else L_ans[no_trial][0]][0],
